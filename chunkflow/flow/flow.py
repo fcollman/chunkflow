@@ -180,7 +180,7 @@ def generate_tasks(layer_path, mip, roi_start, chunk_size, grid_size, queue_name
 @click.option('--output-patch-overlap', '-o',
               type=int, default=None, nargs=3, callback=default_none,
               help='overlap of patches. default is 50% overlap')
-@click.option('--crop-chunk-margin', '-p', 
+@click.option('--crop-chunk-margin', '-c', 
               type=int, nargs=3, default=None,
               callback=default_none, help='size of margin to be cropped.')
 @click.option('--mip', '-m', type=click.IntRange(min=0, max=10), default=0, 
@@ -321,8 +321,8 @@ def setup_env(volume_start, volume_stop, volume_size, layer_path, max_ram_size,
 
         if not overwrite_info:
             print('\ncheck that we are not overwriting existing info file.')
-            assert storage.exists('info')
-            assert thumbnail_storage.exists('info')
+            assert ~storage.exists('info')
+            assert ~thumbnail_storage.exists('info')
 
         print('create and upload info file to ', layer_path)
         # Note that cloudvolume use fortran order rather than C order
