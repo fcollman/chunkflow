@@ -180,7 +180,7 @@ def generate_tasks(layer_path, mip, roi_start, chunk_size, grid_size, queue_name
 @click.option('--output-patch-overlap', '-o',
               type=int, default=None, nargs=3, callback=default_none,
               help='overlap of patches. default is 50% overlap')
-@click.option('--crop-chunk-margin', '-c', 
+@click.option('--crop-chunk-margin', '-p', 
               type=int, nargs=3, default=None,
               callback=default_none, help='size of margin to be cropped.')
 @click.option('--mip', '-m', type=click.IntRange(min=0, max=10), default=0, 
