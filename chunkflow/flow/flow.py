@@ -183,7 +183,7 @@ def generate_tasks(layer_path, mip, roi_start, chunk_size, grid_size, queue_name
 @click.option('--crop-chunk-margin', '-c', 
               type=int, nargs=3, default=None,
               callback=default_none, help='size of margin to be cropped.')
-@click.option('--mip', '-m', type=click.IntRange(min=0, max=3), default=0, 
+@click.option('--mip', '-m', type=click.IntRange(min=0, max=10), default=0, 
               help='the output mip level (default is 0).')
 @click.option('--thumbnail-mip', '-b', type=click.IntRange(min=5, max=16), default=6,
               help='mip level of thumbnail layer.')
