@@ -19,7 +19,8 @@ class CutoutOperator(OperatorBase):
                  blackout_sections: bool = None,
                  dry_run: bool = False,
                  name: str = 'cutout',
-                 verbose: bool = True):
+                 verbose: bool = True,
+                 use_https: bool = True):
         super().__init__(name=name, verbose=verbose)
         self.volume_path = volume_path
         self.mip = mip
@@ -28,7 +29,7 @@ class CutoutOperator(OperatorBase):
         self.validate_mip = validate_mip
         self.blackout_sections = blackout_sections
         self.dry_run = dry_run
-
+        self.use_https = use_https
         if blackout_sections:
             with Storage(volume_path) as stor:
                 self.blackout_section_ids = stor.get_json(
@@ -42,6 +43,7 @@ class CutoutOperator(OperatorBase):
                           progress=self.verbose,
                           mip=self.mip,
                           cache=False,
+                          use_https=self.use_https,
                           green_threads=True)
        
         chunk_slices = tuple(
